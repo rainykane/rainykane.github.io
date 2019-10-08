@@ -34,7 +34,7 @@ audio {display:none;visibility:hidden;opacity:0;width:0;height:0;}
   background-position:100% 100%;
   -webkit-mask-box-image:url("/img/logo.png");
   background-color:white;
-  width:75px;
+  width:147px;
   height:32px;
   mask-image:url("/img/logo.png");
   mask-size:contain;
