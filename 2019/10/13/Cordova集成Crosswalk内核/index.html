@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>为什么开始写博客 - Kane</title>
+    <title>Cordova：集成Crosswalk内核 - Kane</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="rainykane,"> 
-    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背景
-大约两年前，习惯于在各大平台浏览博客学习技术，解决疑惑的我在某一天惊觉，“分享才是最好的学习方式”，仅仅只是记住了，或者会用了，还远远不够，更别说事实上我所谓的学习多半只是单纯的CTRL + ,"> 
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,为什么要集成Crosswalk
+解决样式在安卓手机上的兼容性问题
+项目原本使用的是腾讯X5的内核，因为很多的Crosswalk和X5的对比帖，结论都是X5相对比较优选。
+
+集成X5不会使包体增加太多,"> 
     <meta name="author" content="Kane Yang"> 
     <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
     <link rel="icon" href="/images/icon.png"> 
@@ -36,7 +39,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://rainykane.cn"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">为什么开始写博客</h3>
+    <h3 class="subtitle">Cordova：集成Crosswalk内核</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -54,45 +57,40 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">为什么开始写博客</h1>
+        <h1 class="title">Cordova：集成Crosswalk内核</h1>
         <div class="stuff">
-            <span>九月 27, 2019</span>
+            <span>十月 13, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/计划/">计划</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Cordova/">Cordova</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><blockquote>
-<p>大约两年前，习惯于在各大平台浏览博客学习技术，解决疑惑的我在某一天惊觉，<strong>“分享才是最好的学习方式”</strong>，仅仅只是记住了，或者会用了，还远远不够，更别说事实上我所谓的学习多半只是单纯的CTRL + C/V了。</p>
+            <h4 id="为什么要集成Crosswalk"><a href="#为什么要集成Crosswalk" class="headerlink" title="为什么要集成Crosswalk"></a><strong>为什么要集成Crosswalk</strong></h4><hr>
+<p><strong>解决样式在安卓手机上的兼容性问题</strong></p>
+<p>项目原本使用的是腾讯X5的内核，因为很多的Crosswalk和X5的对比帖，结论都是X5相对比较优选。</p>
+<blockquote>
+<p>集成X5不会使包体增加太多<br>X5的性能表现很不错</p>
 </blockquote>
-<p><strong>分享</strong>的好处显而易见</p>
+<p>然而在实际的项目使用上，X5存在一些意想不到的问题得不到解决</p>
 <ul>
-<li>重新对知识进行系统的整理，加深印象</li>
-<li>在整理的过程中可能有新的收获</li>
+<li>在一些18:9的机型上的表现跟期望的不一致</li>
+<li>发现在一些高版本的安卓手机上，进行安装且首次打开退出时，会将首次运行所缓存在localstorage的数据清空，包括登录状态等…</li>
 </ul>
-<p>于是，写博客这件事就成了我一个不为人知的执念。</p>
-<p>燃鹅，两年过去了！！你大爷还是你大爷，不对，你执念还是你执念ヽ(ｏ`皿′ｏ)ﾉ</p>
-<p>趁着刚跟着Keep做完几组“减肥操”，鸡血效力还没过，在此立下Flag：</p>
-<ul>
-<li><strong>关于写博客这件事既然开始了就决不轻易弃坑！</strong></li>
-<li><strong>停更不得超过两周！</strong></li>
+<p>在集成Crosswalk之后这些问题都得到了解决，而对于所增加20M左右的包体大小，我认为无关痛痒。</p>
+<h4 id="集成步骤"><a href="#集成步骤" class="headerlink" title="集成步骤"></a><strong>集成步骤</strong></h4><hr>
+<h5 id="1-同步依赖版本"><a href="#1-同步依赖版本" class="headerlink" title="1 同步依赖版本"></a>1 同步依赖版本</h5><ul>
+<li>cordova: v8.1.2</li>
+<li>cordova-android: v7.1.4</li>
 </ul>
-<p>写博客对不同的人的意义不同，对我自身来讲最迫切的则是希望开此坑能<strong>根治我的懒癌</strong>。最近懒癌作祟，已经丢掉了不少的东西了，再继续后果会很严重。再说作为一个已经过法定结婚年龄的老年人来说，理当成为核心竞争力的重要属性已经不再是“成绩好，上进心”，而是<strong>执行力强和高度自律</strong>。</p>
-<p>现在的年轻人，有想法的人很多很多，但能将想法通过实践去检验的寥寥无几。现在的年轻人，要完成的daydayup目标很多很多，但能坚持到最后的没有1%。</p>
-<p>写博客，则是我实现转变的第一步。flag都已经立下了，就往前冲把~</p>
-<h4 id="博客的内容"><a href="#博客的内容" class="headerlink" title="博客的内容"></a>博客的内容</h4><p>为博客的内容事先进行严格的分类我认为非常有必要。以下做分别的介绍：</p>
-<ul>
-<li><p><strong>Experience</strong>: 技术上经验的总结，文中技术上的观点尽量通过code来进行验证</p>
-</li>
-<li><p><strong>Thinking</strong>: 技术除外的一些思考</p>
-</li>
-<li><p><strong>Life</strong>: 生活的感受，个人规划或琐事记录等等……</p>
-</li>
-<li><p><strong>Share</strong>: 此类目下的博文为纯分享，安利(•౪• )</p>
-<p>欢迎监督或共勉。</p>
-</li>
-</ul>
+<h5 id="2-添加Crosswalk的Cordova插件"><a href="#2-添加Crosswalk的Cordova插件" class="headerlink" title="2 添加Crosswalk的Cordova插件"></a>2 添加Crosswalk的Cordova插件</h5><p>执行命令：<br><code>cordova plugin add cordova-plugin-crosswalk-webview</code></p>
+<p>使用当前cordova的最新版本9.0的时候编译不通过,于是降为8</p>
+<p>若此步添加完插件后可以正常打包没有报错的话，则可以直接<strong>忽略2,3步。</strong></p>
+<p>需要注意的是如果打的是debug包的话，是不会引用Crosswalk的。所以需要使用<code>cordova build --release</code> 进行打包</p>
+<h5 id="3-解决报错-minSdkVersion-不匹配问题"><a href="#3-解决报错-minSdkVersion-不匹配问题" class="headerlink" title="3 解决报错 minSdkVersion 不匹配问题"></a>3 解决报错 minSdkVersion 不匹配问题</h5><p>打开platforms -&gt; android -&gt; build.gradle</p>
+<p>通过ctrl + f 搜索 ‘16’, 定位到minSdkVersion的配置位置，将’16’改为’19’</p>
+<h5 id="4-解决报错-failed-to-execute-aapt"><a href="#4-解决报错-failed-to-execute-aapt" class="headerlink" title="4 解决报错 failed to execute aapt"></a>4 解决报错 failed to execute aapt</h5><p>执行命令：<code>cordova plugin add cordova-android-support-gradle-release --fetch</code></p>
+<p>至此，Crosswalk在Cordova上集成完毕！！文章为个人项目经验总结弱存在错误观点，欢迎指正探讨~</p>
 <hr>
 <p><em>Kane – 一切都是命运石之门的选择</em></p>
 
