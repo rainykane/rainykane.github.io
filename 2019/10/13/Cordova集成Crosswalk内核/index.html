@@ -11,10 +11,11 @@
     <meta name="google" content="notranslate">
     <meta name="keywords" content="rainykane,"> 
     <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,为什么要集成Crosswalk
-解决样式在安卓手机上的兼容性问题
-项目原本使用的是腾讯X5的内核，因为很多的Crosswalk和X5的对比帖，结论都是X5相对比较优选。
 
-集成X5不会使包体增加太多,"> 
+Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经满足需求了，所以不需要。
+
+解决样式在安卓手机上的兼容性问题
+项目原本使用的是腾讯X5,"> 
     <meta name="author" content="Kane Yang"> 
     <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
     <link rel="icon" href="/images/icon.png"> 
@@ -67,11 +68,15 @@
         </div>
         <div class="content markdown">
             <h4 id="为什么要集成Crosswalk"><a href="#为什么要集成Crosswalk" class="headerlink" title="为什么要集成Crosswalk"></a><strong>为什么要集成Crosswalk</strong></h4><hr>
+<blockquote>
+<p>Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经满足需求了，所以不需要。</p>
+</blockquote>
 <p><strong>解决样式在安卓手机上的兼容性问题</strong></p>
 <p>项目原本使用的是腾讯X5的内核，因为很多的Crosswalk和X5的对比帖，结论都是X5相对比较优选。</p>
-<blockquote>
-<p>集成X5不会使包体增加太多<br>X5的性能表现很不错</p>
-</blockquote>
+<ul>
+<li>集成X5不会使包体增加太多   </li>
+<li>X5的性能表现很不错</li>
+</ul>
 <p>然而在实际的项目使用上，X5存在一些意想不到的问题得不到解决</p>
 <ul>
 <li>在一些18:9的机型上的表现跟期望的不一致</li>
@@ -87,7 +92,7 @@
 <p>使用当前cordova的最新版本9.0的时候编译不通过,于是降为8</p>
 <p>若此步添加完插件后可以正常打包没有报错的话，则可以直接<strong>忽略2,3步。</strong></p>
 <p>需要注意的是如果打的是debug包的话，是不会引用Crosswalk的。所以需要使用<code>cordova build --release</code> 进行打包</p>
-<h5 id="3-解决报错-minSdkVersion-不匹配问题"><a href="#3-解决报错-minSdkVersion-不匹配问题" class="headerlink" title="3 解决报错 minSdkVersion 不匹配问题"></a>3 解决报错 minSdkVersion 不匹配问题</h5><p>打开platforms -&gt; android -&gt; build.gradle</p>
+<h5 id="3-解决报错-minSdkVersion-不匹配问题"><a href="#3-解决报错-minSdkVersion-不匹配问题" class="headerlink" title="3 解决报错 minSdkVersion 不匹配问题"></a>3 解决报错 minSdkVersion 不匹配问题</h5><p>打开platforms -&gt; android -&gt; android.json</p>
 <p>通过ctrl + f 搜索 ‘16’, 定位到minSdkVersion的配置位置，将’16’改为’19’</p>
 <h5 id="4-解决报错-failed-to-execute-aapt"><a href="#4-解决报错-failed-to-execute-aapt" class="headerlink" title="4 解决报错 failed to execute aapt"></a>4 解决报错 failed to execute aapt</h5><p>执行命令：<code>cordova plugin add cordova-android-support-gradle-release --fetch</code></p>
 <p>至此，Crosswalk在Cordova上集成完毕！！文章为个人项目经验总结弱存在错误观点，欢迎指正探讨~</p>
