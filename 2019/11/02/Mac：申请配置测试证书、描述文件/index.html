@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cordova：集成Crosswalk内核 - Kane</title>
+    <title>Mac：申请配置测试证书、描述文件 - Kane</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="rainykane,"> 
-    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,为什么要集成Crosswalk
-
-Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经满足需求了，所以不需要。
-
-解决样式在安卓手机上的兼容性问题
-项目原本使用的是腾讯X5,"> 
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背景第一次使用Cordova在Mac上打包H5项目时，遇到了问题，此前没有在Mac做过任何开发。在直接用cordova打ipa测试包的时候就报错了，“require a development te,"> 
     <meta name="author" content="Kane Yang"> 
     <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
     <link rel="icon" href="/images/icon.png"> 
@@ -40,7 +35,7 @@ Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经�
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://rainykane.cn"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">Cordova：集成Crosswalk内核</h3>
+    <h3 class="subtitle">Mac：申请配置测试证书、描述文件</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -58,44 +53,52 @@ Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经�
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">Cordova：集成Crosswalk内核</h1>
+        <h1 class="title">Mac：申请配置测试证书、描述文件</h1>
         <div class="stuff">
-            <span>十月 13, 2019</span>
+            <span>十一月 02, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Cordova/">Cordova</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Mac-OS/">Mac OS</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h4 id="为什么要集成Crosswalk"><a href="#为什么要集成Crosswalk" class="headerlink" title="为什么要集成Crosswalk"></a><strong>为什么要集成Crosswalk</strong></h4><hr>
-<blockquote>
-<p>Crosswalk只针对安卓，而IOS由于原生的webview性能和兼容性已经满足需求了，所以不需要。</p>
-</blockquote>
-<p><strong>解决样式在安卓手机上的兼容性问题</strong></p>
-<p>项目原本使用的是腾讯X5的内核，因为很多的Crosswalk和X5的对比帖，结论都是X5相对比较优选。</p>
-<ul>
-<li>集成X5不会使包体增加太多   </li>
-<li>X5的性能表现很不错</li>
-</ul>
-<p>然而在实际的项目使用上，X5存在一些意想不到的问题得不到解决</p>
-<ul>
-<li>在一些18:9的机型上的表现跟期望的不一致</li>
-<li>发现在一些高版本的安卓手机上，进行安装且首次打开退出时，会将首次运行所缓存在localstorage的数据清空，包括登录状态等…</li>
-</ul>
-<p>在集成Crosswalk之后这些问题都得到了解决，而对于所增加20M左右的包体大小，我认为无关痛痒。</p>
-<h4 id="集成步骤"><a href="#集成步骤" class="headerlink" title="集成步骤"></a><strong>集成步骤</strong></h4><hr>
-<h5 id="1-同步依赖版本"><a href="#1-同步依赖版本" class="headerlink" title="1 同步依赖版本"></a>1 同步依赖版本</h5><ul>
-<li>cordova: v8.1.2</li>
-<li>cordova-android: v7.1.4</li>
-</ul>
-<h5 id="2-添加Crosswalk的Cordova插件"><a href="#2-添加Crosswalk的Cordova插件" class="headerlink" title="2 添加Crosswalk的Cordova插件"></a>2 添加Crosswalk的Cordova插件</h5><p>执行命令：<br><code>cordova plugin add cordova-plugin-crosswalk-webview</code></p>
-<p>使用当前cordova的最新版本9.0的时候编译不通过,于是降为8</p>
-<p>若此步添加完插件后可以正常打包没有报错的话，则可以直接<strong>忽略2,3步。</strong></p>
-<p>需要注意的是如果打的是debug包的话，是不会引用Crosswalk的。所以需要使用<code>cordova build --release</code> 进行打包</p>
-<h5 id="3-解决报错-minSdkVersion-不匹配问题"><a href="#3-解决报错-minSdkVersion-不匹配问题" class="headerlink" title="3 解决报错 minSdkVersion 不匹配问题"></a>3 解决报错 minSdkVersion 不匹配问题</h5><p>打开platforms -&gt; android -&gt; android.json</p>
-<p>通过ctrl + f 搜索 ‘16’, 定位到minSdkVersion的配置位置，将’16’改为’19’</p>
-<h5 id="4-解决报错-failed-to-execute-aapt"><a href="#4-解决报错-failed-to-execute-aapt" class="headerlink" title="4 解决报错 failed to execute aapt"></a>4 解决报错 failed to execute aapt</h5><p>执行命令：<code>cordova plugin add cordova-android-support-gradle-release --fetch</code></p>
-<p>至此，Crosswalk在Cordova上集成完毕！！文章为个人项目经验总结弱存在错误观点，欢迎指正探讨~</p>
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>第一次使用Cordova在Mac上打包H5项目时，遇到了问题，此前没有在Mac做过任何开发。在直接用cordova打ipa测试包的时候就报错了，<strong>“require a development team”</strong>。并有了后续这些操作，在此做记录备忘。</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><strong>准备一个苹果的开发者账号</strong></li>
+<li><strong>生成CRS（Certificate Signing Request）文件</strong></li>
+<li><strong>申请开发测试证书</strong></li>
+<li><strong>申请描述文件</strong></li>
+<li><strong>在Xcode中为项目配置描述文件</strong></li>
+</ol>
+<h3 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h3><h4 id="一、准备一个苹果的开发者账号"><a href="#一、准备一个苹果的开发者账号" class="headerlink" title="一、准备一个苹果的开发者账号"></a><strong>一、准备一个苹果的开发者账号</strong></h4><p>苹果开发者中心： developer.apple.com</p>
+<p>需要注意的是，注册开发者账号目前的最低价格是99🔪每年。而<strong>没有开发者账号的话是无法通过正常的操作来打出ipa包的</strong>，下面的流程也就无法进行。</p>
+<p>注册开发者账号：使用Apple ID登录苹果开发者中心，在“Account”页面下有一个“Join the Apple Developer Program”的区域，然后按流程走，注册付完费就可以正常使用了。</p>
+<h4 id="二、生成CRS（Certificate-Signing-Request）文件"><a href="#二、生成CRS（Certificate-Signing-Request）文件" class="headerlink" title="二、生成CRS（Certificate Signing Request）文件"></a><strong>二、生成CRS（Certificate Signing Request）文件</strong></h4><p>后续的申请证书时需要上传该文件。</p>
+<p>在Mac中打开“钥匙串访问” -&gt; “证书助理” -&gt; “从证书颁发机构请求证书…”</p>
+<p><img src="/images/mac/mac08.png" alt="请求证书"></p>
+<p>在接下来的弹出框中勾选，<strong>“存储到磁盘”</strong>，“CA电子邮件地址”则变成“非必需”了</p>
+<h4 id="三、申请开发测试证书"><a href="#三、申请开发测试证书" class="headerlink" title="三、申请开发测试证书"></a><strong>三、申请开发测试证书</strong></h4><p>此步骤的意义类似Github在配置SSH key。</p>
+<ol>
+<li>在苹果开发者中心中找到”Account” -&gt; “Certificates,Identifiers &amp; Profiles”页，点击”+”号，添加Certificates<br><img src="/images/mac/mac09.png" alt="请求证书1"></li>
+<li>选择”IOS App Development”(根据需要选择)，下一步</li>
+<li>上传已经生成的CSR文件</li>
+<li>下载到mac，双击安装即可。</li>
+</ol>
+<h4 id="四、申请描述文件（Provisioning-Profile）"><a href="#四、申请描述文件（Provisioning-Profile）" class="headerlink" title="四、申请描述文件（Provisioning Profile）"></a><strong>四、申请描述文件（Provisioning Profile）</strong></h4><p>描述文件中，包含几个信息：<strong>App ID、设备 ID 和 证书</strong></p>
+<p>于是在之前的基础上只需要在申请Profiles之前先在苹果开发者中心中创建App ID 和 设备，过程相当简单</p>
+<p>App ID : “Account” -&gt; “Certificates,Identifiers &amp; Profiles” -&gt; “Identifiers”</p>
+<p>设备 ： “Account” -&gt; “Certificates,Identifiers &amp; Profiles” -&gt; “Devices”</p>
+<p>开始申请Profile</p>
+<ol>
+<li>在苹果开发者中心中找到”Account” -&gt; “Certificates,Identifiers &amp; Profiles” -&gt; “Profiles”</li>
+<li>通过”+”号新建，依次选择开发场景，AppID，证书，设备，并填写文件名字</li>
+<li>下载</li>
+</ol>
+<h4 id="五、在Xcode中为项目配置描述文件"><a href="#五、在Xcode中为项目配置描述文件" class="headerlink" title="五、在Xcode中为项目配置描述文件"></a><strong>五、在Xcode中为项目配置描述文件</strong></h4><ol>
+<li>在Xcode中的项目配置，”Signing &amp; Capabilities” -&gt; 取消勾选”Automatically manage signing”选项</li>
+<li>确保”Bundle Identifier”中的app id 和创建描述文件时所选择的一致</li>
+<li>选择”Provisioning Profile” -&gt; “Import Profile…”<br><img src="/images/mac/mac04.png" alt="描述文件"></li>
+</ol>
 <hr>
 <p><em>Kane – 一切都是命运石之门的选择</em></p>
 
