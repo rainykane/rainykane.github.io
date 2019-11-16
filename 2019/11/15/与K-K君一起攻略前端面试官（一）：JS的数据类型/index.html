@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>与K_K君一起攻略前端面试官（零）：开坑前言 - Kane</title>
+    <title>与K_K君一起攻略前端面试官（一）：JS的数据类型和内存机制浅析 - Kane</title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="rainykane,"> 
-    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背景
-开此坑的想法源自一次被面试官残忍打脸的经历
-某外企面试官如是说
-
-“在面试的过程我能了解到你对这些技术有一定的理解，并且在实际项目中有真正地去使用他们。但你这份简历还是投得太早了，你知道吧，建,"> 
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背就完事了
+问：JS有哪些数据类型
+答：JS有七种数据类型，分别是Number、String、Boolean、Null、Undefined、Symbol、Object。其中Object是引用数据类型,"> 
     <meta name="author" content="Kane Yang"> 
     <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
     <link rel="icon" href="/images/icon.png"> 
@@ -39,7 +37,7 @@
     <div class="bar" style="width: 0;"></div>
     <a class="icon-home image-icon" href="javascript:;" data-url="http://rainykane.cn"></a>
     <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">与K_K君一起攻略前端面试官（零）：开坑前言</h3>
+    <h3 class="subtitle">与K_K君一起攻略前端面试官（一）：JS的数据类型和内存机制浅析</h3>
     <div class="social">
         <!--<div class="like-icon">-->
             <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -57,34 +55,83 @@
     <div class="section">
         <div class="article">
     <div class='main'>
-        <h1 class="title">与K_K君一起攻略前端面试官（零）：开坑前言</h1>
+        <h1 class="title">与K_K君一起攻略前端面试官（一）：JS的数据类型和内存机制浅析</h1>
         <div class="stuff">
-            <span>十一月 14, 2019</span>
+            <span>十一月 15, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端面试篇/">前端面试篇</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/计划/">计划</a></li></ul>
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JS/">JS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端面试篇/">前端面试篇</a></li></ul>
 
 
         </div>
         <div class="content markdown">
-            <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h4><hr>
-<p>开此坑的想法源自一次被面试官残忍打脸的经历</p>
-<p>某外企面试官如是说</p>
-<blockquote>
-<p>“在面试的过程我能了解到你对这些技术有一定的理解，并且在实际项目中有真正地去使用他们。但你这份简历还是投得太早了，你知道吧，建议多背背面试题。你别听有些人会说，‘面试造火箭，入职拧螺丝’。但只有基础知识才能检验你所积累的东西，<strong>不然和培训三个月出来的人没啥区别了</strong>，知道吗”</p>
-</blockquote>
-<p>虽然这脸挺疼的，但就因为如此深刻才坚定了要攻略面试官的念头，下次一定要扳回一局!!!</p>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h4><hr>
-<p>这个篇章主要是整理一份属于自己的前端知识脉络，巩固前端基础知识。目标是将繁杂的面试题归类，逐个击破。</p>
-<p>文章是以知识点命名，打上 “HTML”,”CSS”,”JS” 的Tag，</p>
-<p><strong>内容形式</strong></p>
-<ol>
-<li>背就完事了<br> · 列出该知识点相关面试题的题目和答案</li>
-<li>解读小助手<br> · 通过一些图表或代码对上述知识点进行解读，加深理解</li>
-</ol>
-<h4 id="Flag"><a href="#Flag" class="headerlink" title="Flag"></a><strong>Flag</strong></h4><hr>
-<p>立下flag: <strong>每周至少更新一篇“前端面试篇”的文章</strong></p>
-<p>毕竟巩固基础是一个长期积累的过程，希望我能坚持下去，厚积薄发！！</p>
-<p>冲鸭！</p>
+            <h4 id="背就完事了"><a href="#背就完事了" class="headerlink" title="背就完事了"></a><strong>背就完事了</strong></h4><hr>
+<p><strong>问：JS有哪些数据类型</strong></p>
+<p>答：JS有<strong>七</strong>种数据类型，分别是Number、String、Boolean、Null、Undefined、Symbol、Object。其中Object是引用数据类型，其他都是值类型（基本数据类型）。引用数据类型又细分为Function, Array和Object类型。</p>
+<p><strong>问：如何理解值类型和引用类型</strong></p>
+<p>答：值类型占用空间固定，保存在栈里面，操作的是值本身；引用类型占用空间不固定，保存在堆中，操作的是指向对象的一个指针。</p>
+<p><strong>问：如何理解堆（heap）栈（stack）</strong></p>
+<p>答：栈一般存放变量的值，堆一般存放复杂对象；栈的结构是先进先出，内存空间由系统自动分配和释放，堆的结构是先进后出，内存空间为动态分配，不主动释放的话，可能会由垃圾回收机制自动回收。</p>
+<p><strong>问：Null和Undefined有什么区别</strong></p>
+<p>答：null是一个对象指针，但没有指向任何对象，通过<code>typeof(null)</code>得到的是 Object类型；undefined则是一个空值，通过<code>typeof(undefined)</code>得到的是 Undefined。</p>
+<p><strong>问：什么是浅拷贝和深拷贝</strong></p>
+<p>答：浅拷贝是只复制指向对象的指针，对新旧对象进行操作都会互相影响；而深拷贝则是创建一个新的对象，将原来的值一个个复制过来，与原对象不在同一内存地址。</p>
+<p><strong>问：如何理解Symbol类型，使用场景是什么</strong></p>
+<p>答：Symbol的特点就是Symbol类型只能通过Symbol()这个方法返回得到，且Symbol类型的值是绝对唯一的。使用场景是作为对象属性的key值。</p>
+<h4 id="理解小帮手"><a href="#理解小帮手" class="headerlink" title="理解小帮手"></a><strong>理解小帮手</strong></h4><hr>
+<p><strong>关于值类型，引用类型和内存栈和堆的关系</strong></p>
+<p>如下图所示，a,b变量是值类型，c,d变量是引用类型。</p>
+<p>在声明c,d变量时，会先创建相应的对象存放在堆内存中，再将其引用地址赋值给变量。</p>
+<p><img src="/images/interview/1/stack&heap.png" alt="stack&amp;heap"></p>
+<p>由此，这道常见面试题的答案显而易见</p>
+<pre><code>var a = { test : 10 }
+var b = a
+a.test = 20
+此时b.test的值为？</code></pre><p><strong>关于null，{}和undefined的对比</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>描述</th>
+<th>数据类型</th>
+<th>对应Boolean值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>null</td>
+<td>指针，指向地址没有对象</td>
+<td>Object</td>
+<td>false</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>指针，指向空对象</td>
+<td>Object</td>
+<td><strong>true</strong></td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>值，未定义</td>
+<td>Undefined</td>
+<td>false</td>
+</tr>
+</tbody></table>
+<p><strong>关于浅拷贝和深拷贝的具体操作</strong></p>
+<p>日常大部分的拷贝动作都属于浅拷贝，包括直接赋值(=), 扩展运算符(…), Array的concat操作, Object的assign操作。</p>
+<p>真正的深拷贝方法可以自己进行封装，循环判断每一个子项是否为引用类型，再进行复制。</p>
+<p>也可以通过JSON.parse(JSON.stringfy(object))进行深拷贝</p>
+<pre><code>// 日常所见的浅拷贝操作
+var a = { class: 1, teacher: { name : &apos;abc&apos; }}
+var b = a
+var c = {...a}
+var d = Object.assign({}, a)
+var e = JSON.parse(JSON.stringify(a))
+a.class = 2
+a.teacher.name = &apos;bcd&apos;
+console.log(a)    // 打印结果：{ class: 2, teacher: { name : &apos;bcd&apos; }}
+console.log(b)    // 打印结果：{ class: 2, teacher: { name : &apos;bcd&apos; }}
+console.log(c)    // 打印结果：{ class: 1, teacher: { name : &apos;bcd&apos; }}
+console.log(d)    // 打印结果：{ class: 1, teacher: { name : &apos;bcd&apos; }}
+console.log(e)    // 打印结果：{ class: 1, teacher: { name : &apos;abc&apos; }}</code></pre><p>通过以上代码可以看出…, Object.assign, concat等操作只是第一层用新建的对象包裹住，子属性对象的引用地址还是和原来一致。</p>
 <hr>
 <p><em>Kane – 一切都是命运石之门的选择</em></p>
 
