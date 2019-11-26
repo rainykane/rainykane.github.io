@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>与K_K君一起攻略前端面试官（二）：作用域和闭包 - Kane</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="rainykane,"> 
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背就完事了介绍：一些知识点相关的面试题和答案使用姿势：看答案前先尝试回答，看完后把答案收起来检验成果~
+
+
+问：如何理解JS的作用域和作用域链
+
+答：在ES5中，只有全局作用域和局部作用域。ES6因,"> 
+    <meta name="author" content="Kane Yang"> 
+    <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
+    <link rel="icon" href="/images/icon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Kane</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://rainykane.cn"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">与K_K君一起攻略前端面试官（二）：作用域和闭包</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">与K_K君一起攻略前端面试官（二）：作用域和闭包</h1>
+        <div class="stuff">
+            <span>十一月 21, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JS/">JS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端面试篇/">前端面试篇</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h4 id="背就完事了"><a href="#背就完事了" class="headerlink" title="背就完事了"></a><strong>背就完事了</strong></h4><p>介绍：一些知识点相关的面试题和答案<br>使用姿势：看答案前先尝试回答，看完后把答案收起来检验成果~</p>
+<hr>
+<details>
+<summary><b>问：如何理解JS的作用域和作用域链</b></summary>
+
+<p>答：在ES5中，只有全局作用域和局部作用域。ES6因为let，const的引入而有了块作用域。js在浏览器中的顶级作用域是window。作用域链的话，是指子作用域会一级一级向上寻找所有父作用域的变量。</p>
+<p>解析：1. 局部作用域所对应的是函数环境，块作用域对应的是大括号（{ … }）内的环境，如if,for,switch等;2. 作用域链简单理解为函数嵌套时，内层函数可以访到上层函数的作用域，而上层又可以往上上层找，从而形成链式结构。</p>
+</details>
+<details>
+<summary><b>问：什么是变量提升</b></summary>
+
+<p>答：在js中，所有变量和函数的声明都会被提升到<b>所在作用域</b>的最顶部，所以变量先使用，后声明是不会报错的。</p>
+<p>解析：注意是<b>所在作用域</b>而不是最外层。</p>
+</details>
+<details>
+<summary><b>问：var和let, const有什么区别</b></summary>
+
+<p>答：var声明的变量没有块作用域，在最外层声明的话会挂在到window上，并且存在变量提升；let和const声明的是块级变量，不会挂载到window上，也不存在变量提升，而且不能重复声明同一个变量；const声明的变量不能被重新赋值，一般用来声明常量。</p>
+<p>解析：const声明的变量虽然不能被重新赋值，但<b>并不意味着他的值不能被改变</b>。例如当const声明的变量是引用类型的时候。</p>
+</details>
+<details>
+<summary><b>问：什么是闭包</b></summary>
+
+<p>答：闭包是一个可以访问到其他函数内部变量的<b>函数</b>。</p>
+<p>解析：常见于函数嵌套，子函数可以访问到父级函数作用域下的变量，则子函数称为闭包。</p>
+</details>
+<details>
+<summary><b>问：闭包有什么作用和缺点</b></summary>
+
+<p>答：闭包的作用有两个，正常来说，函数作用域外部无法访问到内部的变量，而闭包可以作为桥梁让外部能成功访问到函数的变量；第二个是能使函数变量的值一直保存在内存中。缺点的话就是可能引起内存泄漏，在函数执行完毕后，可能因为闭包导致外层函数的变量一直存在内存中。</p>
+<p>解析：闭包的第一个作用可以理解为，java中的getter方法，外部只能通过getter(闭包)来访问对象（函数）中的私有变量(变量)。</p>
+</details>
+
+<h4 id="理解小帮手"><a href="#理解小帮手" class="headerlink" title="理解小帮手"></a><strong>理解小帮手</strong></h4><p>介绍：总结性的图表或笔试题目和解析，让知识点更容易懂</p>
+<hr>
+<p><strong>关于作用域，作用域链，以及变量提升和var,let,const和闭包的相关知识</strong></p>
+<p>下面通过代码分析来加深认识<br>注: 建议将复制到浏览器控制台，或者node环境下执行,手机的话建议横屏~</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>                               <span class="comment">// 用来标识打印的序号</span></span><br><span class="line"><span class="built_in">console</span>.log(++count, song)                  <span class="comment">// 结果：1 undefined  解析：变量提升</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(++count, artist)             // 报错：'artist'不能在变量声明前使用  解析：let没有变量提升</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> song = <span class="string">'说好不哭'</span></span><br><span class="line"><span class="keyword">let</span> artist = <span class="string">'奶茶伦'</span></span><br><span class="line"><span class="keyword">const</span> favorite = <span class="string">'奶茶'</span></span><br><span class="line"><span class="keyword">const</span> girlfriend = &#123;</span><br><span class="line">    name : <span class="string">'蔡依林'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(++count, <span class="built_in">window</span>.song)           <span class="comment">// 结果：2 说好不哭  解析：最外层用var声明会挂载到window上</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(++count, <span class="built_in">window</span>.artist)         <span class="comment">// 结果：3 undefined  解析：let声明不会挂载到window</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ ) &#123;&#125;             <span class="comment">// 在for中用var声明变量i</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; <span class="number">10</span>; j++ ) &#123;&#125;             <span class="comment">// 在for中用let声明变量j</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(++count, i)                     <span class="comment">// 结果：4 10  解析：var没有块作用域</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(++count, j)                  // 报错：j没有被定义  解析：let有块作用域</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// favorite = '咖啡'                        // 报错：常量被赋值  解析：const声明的变量不能被重新赋值</span></span><br><span class="line">girlfriend.name = <span class="string">'昆凌'</span></span><br><span class="line"><span class="built_in">console</span>.log(++count, girlfriend)            <span class="comment">// 结果：5 &#123;name:'昆凌'&#125;  解析：const声明的引用类型可以被改变</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">cooperate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(++count, song)              <span class="comment">// 结果：6 说好不哭  解析：作用域链，往上层作用域找song</span></span><br><span class="line">    <span class="keyword">var</span> feat = <span class="literal">undefined</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getFeat</span> (<span class="params">artistName</span>) </span>&#123;         <span class="comment">// 闭包 - 函数嵌套</span></span><br><span class="line">        feat = artistName</span><br><span class="line">        <span class="keyword">return</span> feat</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getFeat                          <span class="comment">// 将闭包暴露出来</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(++count, feat)               // 报错：feat没有被定义  解析：feat在函数cooperate的作用域中，属于局部变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> getFeat = cooperate()                   <span class="comment">// 创建一个闭包</span></span><br><span class="line"><span class="built_in">console</span>.log(++count, getFeat(<span class="string">'阿信'</span>))       <span class="comment">// 结果：7 阿信  解析：通过闭包成功打印cooperate函数中的feat属性</span></span><br><span class="line"></span><br><span class="line">getFeat = <span class="literal">null</span>                              <span class="comment">// 闭包使用后需要手动释放，不然会造成内存泄漏</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>相关笔试题思考</strong></p>
+<p>前端面试的笔试题或多或少会有一至两道考核作用域的题目，如以下经典例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">p1</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">p2</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; </span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">p1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">p2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p2();</span><br><span class="line">    p1()</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决这类问题的关键在于</strong></p>
+<ol>
+<li>将所有变量，在纸上手动提升了再说，脑补容易有疏漏</li>
+<li>通过function 声明的函数，也别忘了进行变量提升(function p1(){} 等同于 var p1 = function () {})</li>
+<li>分析作用域，一般会拿var没有块作用域来整事</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> p1;                        <span class="comment">// p1 = undefined  解析：变量提升</span></span><br><span class="line"><span class="keyword">var</span> p2;                        <span class="comment">// p2 = undefined - 变量提升</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">p1</span>(<span class="params"></span>) </span>&#123;                <span class="comment">// p1 = function () &#123; 1 &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">p2</span>(<span class="params"></span>) </span>&#123;                <span class="comment">// p2 = function () &#123; 2 &#125;</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;                 <span class="comment">// 匿名函数作用域</span></span><br><span class="line">    <span class="keyword">var</span> p1;                    <span class="comment">// p1 = undefined  解析：变量提升，function p1()&#123;&#125; 等同于 var p1 = function () &#123;&#125;，var没有块作用域</span></span><br><span class="line">    <span class="keyword">var</span> p2;                    <span class="comment">// p2 = undefined  解析：变量提升</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">p1</span>(<span class="params"></span>) </span>&#123;        <span class="comment">// p1 = undefined  解析：因为if(false)，这块代码不会执行</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">p2</span>(<span class="params"></span>)</span>&#123;         <span class="comment">// p2 = funtcion() &#123; 4 &#125;</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">4</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p2();                      <span class="comment">// 在当前作用域找到了p2，打印4</span></span><br><span class="line">    p1()                       <span class="comment">// 在当前作用域找到了p1，报错：p1 is not a function</span></span><br><span class="line">        &#125;)();</span><br></pre></td></tr></table></figure>
+
+<p>以上！</p>
+<hr>
+<p><em>Kane – 一切都是命运石之门的选择</em></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://gameleyuan.oss-cn-hangzhou.aliyuncs.com/statics/zhanbu2.0/528903459fe494a7.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='26826d86e717d7fcd081'
+        data-cs='1594fe8acfe4e8b935eb99b5c3c4e4eecbc92612'
+        data-r='rainykane.github.io'
+        data-o='rainykane'
+        data-a='rainykane'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-148992006-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>

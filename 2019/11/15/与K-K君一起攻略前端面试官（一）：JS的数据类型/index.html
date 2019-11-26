@@ -10,9 +10,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate">
     <meta name="keywords" content="rainykane,"> 
-    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背就完事了
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背就完事了介绍：一些知识点相关的面试题和答案使用姿势：看答案前先尝试回答，看完后把答案收起来检验成果~
+
+
 问：JS有哪些数据类型
-答：JS有七种数据类型，分别是Number、String、Boolean、Null、Undefined、Symbol、Object。其中Object是引用数据类型,"> 
+
+答：JS有七种数据类型，分别是Number、String、Boo,"> 
     <meta name="author" content="Kane Yang"> 
     <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
     <link rel="icon" href="/images/icon.png"> 
@@ -64,36 +67,59 @@
 
         </div>
         <div class="content markdown">
-            <h4 id="背就完事了"><a href="#背就完事了" class="headerlink" title="背就完事了"></a><strong>背就完事了</strong></h4><hr>
-<p><strong>问：JS有哪些数据类型</strong></p>
-<p>答：JS有<strong>七</strong>种数据类型，分别是Number、String、Boolean、Null、Undefined、Symbol、Object。其中Object是引用数据类型，其他都是值类型（基本数据类型）。引用数据类型又细分为Function, Array和Object类型。</p>
-<p><strong>问：如何理解值类型和引用类型</strong></p>
+            <h4 id="背就完事了"><a href="#背就完事了" class="headerlink" title="背就完事了"></a><strong>背就完事了</strong></h4><p>介绍：一些知识点相关的面试题和答案<br>使用姿势：看答案前先尝试回答，看完后把答案收起来检验成果~</p>
+<hr>
+<details>
+<summary><b>问：JS有哪些数据类型</b></summary>
+
+<p>答：JS有<b>七</b>种数据类型，分别是Number、String、Boolean、Null、Undefined、Symbol、Object。其中Object是引用数据类型，其他都是值类型（基本数据类型）。引用数据类型又细分为Function, Array和Object类型。</p>
+</details>
+<details>
+<summary><b>问：如何理解值类型和引用类型</b></summary>
+
 <p>答：值类型占用空间固定，保存在栈里面，操作的是值本身；引用类型占用空间不固定，保存在堆中，操作的是指向对象的一个指针。</p>
-<p><strong>问：如何理解堆（heap）栈（stack）</strong></p>
+</details>
+<details>
+<summary><b>问：如何理解堆（heap）栈（stack）</b></summary>
+
 <p>答：栈一般存放变量的值，堆一般存放复杂对象；栈的结构是先进先出，内存空间由系统自动分配和释放，堆的结构是先进后出，内存空间为动态分配，不主动释放的话，可能会由垃圾回收机制自动回收。</p>
-<p><strong>问：Null和Undefined有什么区别</strong></p>
+</details>
+<details>
+<summary><b>问：Null和Undefined有什么区别</b></summary>
+
 <p>答：null是一个对象指针，但没有指向任何对象，通过<code>typeof(null)</code>得到的是 Object类型；undefined则是一个空值，通过<code>typeof(undefined)</code>得到的是 Undefined。</p>
-<p><strong>问：什么是浅拷贝和深拷贝</strong></p>
+</details>
+<details>
+<summary><b>问：什么是浅拷贝和深拷贝</b></summary>
+
 <p>答：浅拷贝是只复制指向对象的指针，对新旧对象进行操作都会互相影响；而深拷贝则是创建一个新的对象，将原来的值一个个复制过来，与原对象不在同一内存地址。</p>
-<p><strong>问：如何理解Symbol类型，使用场景是什么</strong></p>
+</details>
+<details>
+<summary><b>问：如何理解Symbol类型，使用场景是什么</b></summary>
+
 <p>答：Symbol的特点就是Symbol类型只能通过Symbol()这个方法返回得到，且Symbol类型的值是绝对唯一的。使用场景是作为对象属性的key值。</p>
-<h4 id="理解小帮手"><a href="#理解小帮手" class="headerlink" title="理解小帮手"></a><strong>理解小帮手</strong></h4><hr>
+</details>
+
+<h4 id="理解小帮手"><a href="#理解小帮手" class="headerlink" title="理解小帮手"></a><strong>理解小帮手</strong></h4><p>介绍：总结性的图表或笔试题目和解析，让知识点更容易懂</p>
+<hr>
 <p><strong>关于值类型，引用类型和内存栈和堆的关系</strong></p>
 <p>如下图所示，a,b变量是值类型，c,d变量是引用类型。</p>
 <p>在声明c,d变量时，会先创建相应的对象存放在堆内存中，再将其引用地址赋值给变量。</p>
 <p><img src="/images/interview/1/stack&heap.png" alt="stack&amp;heap"></p>
 <p>由此，这道常见面试题的答案显而易见</p>
-<pre><code>var a = { test : 10 }
-var b = a
-a.test = 20
-此时b.test的值为？</code></pre><p><strong>关于null，{}和undefined的对比</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">test</span> : <span class="number">10</span> &#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.test = <span class="number">20</span></span><br><span class="line">此时b.test=?</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p><strong>关于null，{}和undefined的对比</strong></p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>描述</th>
 <th>数据类型</th>
-<th>对应Boolean值</th>
+<th>强转Boolean值</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -119,19 +145,9 @@ a.test = 20
 <p>日常大部分的拷贝动作都属于浅拷贝，包括直接赋值(=), 扩展运算符(…), Array的concat操作, Object的assign操作。</p>
 <p>真正的深拷贝方法可以自己进行封装，循环判断每一个子项是否为引用类型，再进行复制。</p>
 <p>也可以通过JSON.parse(JSON.stringfy(object))进行深拷贝</p>
-<pre><code>// 日常所见的浅拷贝操作
-var a = { class: 1, teacher: { name : &apos;abc&apos; }}
-var b = a
-var c = {...a}
-var d = Object.assign({}, a)
-var e = JSON.parse(JSON.stringify(a))
-a.class = 2
-a.teacher.name = &apos;bcd&apos;
-console.log(a)    // 打印结果：{ class: 2, teacher: { name : &apos;bcd&apos; }}
-console.log(b)    // 打印结果：{ class: 2, teacher: { name : &apos;bcd&apos; }}
-console.log(c)    // 打印结果：{ class: 1, teacher: { name : &apos;bcd&apos; }}
-console.log(d)    // 打印结果：{ class: 1, teacher: { name : &apos;bcd&apos; }}
-console.log(e)    // 打印结果：{ class: 1, teacher: { name : &apos;abc&apos; }}</code></pre><p>通过以上代码可以看出…, Object.assign, concat等操作只是第一层用新建的对象包裹住，子属性对象的引用地址还是和原来一致。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 日常所见的浅拷贝操作</span></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">class</span>: <span class="number">1</span>, <span class="attr">teacher</span>: &#123; <span class="attr">name</span> : <span class="string">'abc'</span> &#125;&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line"><span class="keyword">var</span> c = &#123;...a&#125;</span><br><span class="line"><span class="keyword">var</span> d = <span class="built_in">Object</span>.assign(&#123;&#125;, a)</span><br><span class="line"><span class="keyword">var</span> e = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(a))</span><br><span class="line">a.class = <span class="number">2</span></span><br><span class="line">a.teacher.name = <span class="string">'bcd'</span></span><br><span class="line"><span class="built_in">console</span>.log(a)    <span class="comment">// 打印结果：&#123; class: 2, teacher: &#123; name : 'bcd' &#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b)    <span class="comment">// 打印结果：&#123; class: 2, teacher: &#123; name : 'bcd' &#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(c)    <span class="comment">// 打印结果：&#123; class: 1, teacher: &#123; name : 'bcd' &#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(d)    <span class="comment">// 打印结果：&#123; class: 1, teacher: &#123; name : 'bcd' &#125;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(e)    <span class="comment">// 打印结果：&#123; class: 1, teacher: &#123; name : 'abc' &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码可以看出…, Object.assign, concat等操作只是第一层用新建的对象包裹住，子属性对象的引用地址还是和原来一致。</p>
 <hr>
 <p><em>Kane – 一切都是命运石之门的选择</em></p>
 
