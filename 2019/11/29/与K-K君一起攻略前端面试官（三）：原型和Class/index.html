@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>与K-K君一起攻略前端面试官（三）：JS的原型和原型链 - Kane</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="rainykane,"> 
+    <meta name="description" content="rainykane.cn,rainykane,Rainy Kane,持续中二的K_K君,Kane&#39;s blog,背就完事了
+介绍：一些知识点相关的面试题和答案使用姿势：看答案前先尝试回答，看完后把答案收起来检验成果~
+
+
+面试官：什么是构造函数
+
+答：构造函数的本质是一个普通函数，他的特点是需要通过new关键,"> 
+    <meta name="author" content="Kane Yang"> 
+    <link rel="alternative" href="atom.xml" title="Kane" type="application/atom+xml"> 
+    <link rel="icon" href="/images/icon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">Kane</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://rainykane.cn"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">与K-K君一起攻略前端面试官（三）：JS的原型和原型链</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">与K-K君一起攻略前端面试官（三）：JS的原型和原型链</h1>
+        <div class="stuff">
+            <span>十一月 29, 2019</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/JS/">JS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/前端面试篇/">前端面试篇</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="背就完事了"><a href="#背就完事了" class="headerlink" title="背就完事了"></a>背就完事了</h2><blockquote>
+<p>介绍：一些知识点相关的面试题和答案<br>使用姿势：<strong>看答案前先尝试回答，看完后把答案收起来检验成果~</strong></p>
+</blockquote>
+<details>
+<summary><b>面试官：什么是构造函数</b></summary>
+
+<p>答：构造函数的本质是一个普通函数，他的特点是需要通过<code>new</code>关键字来调用，用来创建对象的实例。所有的引用类型，如[],{},function等都是由构造函数实例化而来。<b>一般首字母大写。</b></p>
+<p>解析：首字母大写只是约定俗成的规范。首字母小写的函数也可以用作构造函数。</p>
+</details>
+<details>
+<summary><b>面试官：什么是原型和原型链</b></summary>
+
+<p>答：原型模式是JS实现继承的一种方式。<b>所有的函数都有一个<code>prototype</code>属性，通过<code>new</code>生成一个对象时，<code>prototype</code>会被实例化为对象的属性。</b>所有的引用类型都有一个<code>__proto__</code>指向其构造函数的<code>prototype</code>。原型链的话，指的就是当访问一个引用类型时，如果本身没有这个属性或方法，就会通过<code>__proto__</code>属性在父级的原型中找，一级一级往上，直到最顶层为止。</p>
+<p>解析：原型链最顶层Object的<code>prototype</code>的<code>__proto__</code>指向为null。</p>
+</details>
+<details>
+<summary><b>面试官：如何理解<code>constructor</code>属性</b></summary>
+
+<p>答：所有函数的原型对象都有一个<code>constructor</code>属性指向函数本身。</p>
+<p>解析：实例化的对象可以通过<code>[].__proto__.constructor</code>获取到其构造函数。</p>
+</details>
+<details>
+<summary><b>面试官：描述new 操作符的执行过程</b></summary>
+
+<p>答：</p>
+<ol>
+<li>创建一个空对象。 </li>
+<li>将这个空对象的<code>__proto__</code>指向构造函数的<code>prototype</code>。</li>
+<li>将构造函数的<code>this</code>指向这个对象。 </li>
+<li>执行构造函数中的代码。</li>
+</ol>
+</details>
+<details>
+<summary><b>面试官：如何判断一个变量是数组类型</b></summary>
+
+<p>答: 使用<code>instanceof</code>关键字 或者<code>constructor</code>属性。</p>
+<p>解析：<code>instanceof</code>的原理是判断操作符左边对象的原型链上是否有右边构造函数的<code>prototype</code>属性。</p>
+</details>
+
+<h2 id="理解小帮手"><a href="#理解小帮手" class="headerlink" title="理解小帮手"></a>理解小帮手</h2><blockquote>
+<p>介绍：总结性的图表,代码例子或笔试题目和解析，让知识点更容易懂</p>
+</blockquote>
+<h3 id="关于构造函数和原型"><a href="#关于构造函数和原型" class="headerlink" title="关于构造函数和原型"></a>关于构造函数和原型</h3><p>构造函数：相当于java中“类”的存在，如原生JS中的<code>Array, Function, String, Date</code>等等，都是构造函数。例如<code>new Date()</code>通过new操作符进行调用，用来创建一个Date对象的实例。</p>
+<p>一个便于理解的栗子，描述js通过原型模式实现继承的过程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Animal</span> (<span class="params">name</span>) </span>&#123;                 <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Animal.prototype.type = <span class="string">'animal'</span>         <span class="comment">// 原型上的属性和方法可以被继承</span></span><br><span class="line"></span><br><span class="line">Animal.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'eat'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> Animal(<span class="string">'忠犬八公'</span>)          <span class="comment">// 通过new 调用构造函数创建Animal的实例dog</span></span><br><span class="line"><span class="built_in">console</span>.log(dog.name)                    <span class="comment">// 输出：忠犬八公</span></span><br><span class="line"><span class="built_in">console</span>.log(dog.type)                    <span class="comment">// 输出：animal</span></span><br><span class="line">dog.eat()                                <span class="comment">// 输出：eat</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(dog.__proto__)               <span class="comment">// 输出：&#123; type:'animal', eat: f, __proto__: ...&#125;  </span></span><br><span class="line"><span class="comment">// dog.__proto__ 指向其构造函数Animal的prototype对象</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="一个关于原型的实用型例子"><a href="#一个关于原型的实用型例子" class="headerlink" title="一个关于原型的实用型例子"></a>一个关于原型的实用型例子</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Elem</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elem = <span class="built_in">document</span>.getElementById(id)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Elem.prototype.html = <span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> elem = <span class="keyword">this</span>.elem </span><br><span class="line">    <span class="keyword">if</span> (val) &#123;</span><br><span class="line">        elem.innerHTML = val</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>    <span class="comment">// 链式编程</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> elem.innerHTML</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Elem.prototype.on = <span class="function"><span class="keyword">function</span> (<span class="params">type, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> elem = <span class="keyword">this</span>.elem</span><br><span class="line">    elem.addEventListener(type, fn)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> div1 = <span class="keyword">new</span> Elem(<span class="string">'div1'</span>)</span><br><span class="line">div1.html(<span class="string">'灶门碳治郎'</span>).on(<span class="string">'click'</span>, (e) =&gt; &#123;</span><br><span class="line">    alert(<span class="string">'灶门碳治郎'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个栗子，使用原型将对<code>dom</code>节点的操作封装起来，只要创建一个Elem实例就轻松插入<code>dom</code>和添加事件监听。</p>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p><img src="/images/js-yxl.jpg" alt="原型链"></p>
+<p>所有的引用类型会有一个<code>__proto__</code>属性指向其构造函数的<code>prototype</code>，当访问这个引用类型的变量和方法时，会通过<code>__proto__</code>属性一层层往上找。如<code>[]</code>不止有构造函数<code>Array</code>原型上的方法，还有可以通过原型链找到<code>Object</code>原型上的方法。</p>
+<h3 id="关于instanceof-和-constructor"><a href="#关于instanceof-和-constructor" class="headerlink" title="关于instanceof 和 constructor"></a>关于instanceof 和 constructor</h3><p><code>instanceof</code>：<strong>判断操作符右边的参数是否在左边的原型链上。</strong>所以<code>[] instanceof Object</code>也为true</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;                                </span><br><span class="line"><span class="keyword">let</span> arr = []</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(obj))                    <span class="comment">// object</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span>(arr))                    <span class="comment">// object</span></span><br><span class="line"><span class="built_in">console</span>.log(obj <span class="keyword">instanceof</span> <span class="built_in">Array</span>)           <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>)           <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(obj.constructor === <span class="built_in">Array</span>)      <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(arr.constructor === <span class="built_in">Array</span>)      <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码可以学习通过<code>instanceof</code>关键字和<code>constructor</code> 属性进行数据类型判断的使用方式。</p>
+<h2 id="知识延伸"><a href="#知识延伸" class="headerlink" title="知识延伸"></a>知识延伸</h2><h3 id="先有鸡还是先有蛋"><a href="#先有鸡还是先有蛋" class="headerlink" title="先有鸡还是先有蛋"></a>先有鸡还是先有蛋</h3><p>JS究竟是先有Object还是先有Function呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Function</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>)     <span class="comment">// 输出：true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span> <span class="keyword">instanceof</span> <span class="built_in">Function</span>)     <span class="comment">// 输出：true</span></span><br></pre></td></tr></table></figure>
+
+<p>Object和Function究竟是什么关系，这个问题一度困扰着我，直到我看到了这张图</p>
+<p><img src="/images/F&O.jpg" alt="F&amp;O"></p>
+<p>简单理解为：</p>
+<ol>
+<li><code>Function</code>在<code>Object</code>的原型链上，因为<code>Object</code>是构造函数，他的<code>__proto__</code>指向<code>Function</code>的原型</li>
+<li><code>Object</code>在<code>Function</code>的原型链上，因为<code>Function</code>是构造函数，他的<code>__proto__</code>指向的也是他自己的原型，然而<code>Function.prototype</code>本质上是一个对象，所以<code>Function.prototype.__proto__</code>指向<code>Object.prototype</code>。</li>
+</ol>
+<h3 id="关于链式编程"><a href="#关于链式编程" class="headerlink" title="关于链式编程"></a>关于链式编程</h3><p>上述“一个关于原型的实用例子”中，提到了<strong>链式编程</strong>，在此做简单介绍</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Dog</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.run = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'dog is run...'</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>                    <span class="comment">// 链式编程的关键</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.eat = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'dog is eat...'</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.sleep = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        alert(<span class="string">'dog is sleep...'</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span> </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> d1 = <span class="keyword">new</span> Dog()</span><br><span class="line">d1.run().eat().sleep()</span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码可以看出</p>
+<ol>
+<li>链式编程的设计模式就是，<strong>调用的函数的时候，可以基于其返回值继续调用其他方法</strong>。</li>
+<li>关键在于方法执行结束后需要有一个供继续调用的返回值，如<code>this</code>等。</li>
+</ol>
+<hr>
+<p><em>Kane – 一切都是命运石之门的选择</em></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='https://gameleyuan.oss-cn-hangzhou.aliyuncs.com/statics/zhanbu2.0/528903459fe494a7.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='26826d86e717d7fcd081'
+        data-cs='1594fe8acfe4e8b935eb99b5c3c4e4eecbc92612'
+        data-r='rainykane.github.io'
+        data-o='rainykane'
+        data-a='rainykane'
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-148992006-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
